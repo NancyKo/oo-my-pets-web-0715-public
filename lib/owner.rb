@@ -2,11 +2,21 @@ require 'pry'
 class Owner
   # code goes here
  attr_reader :type, :species
- attr_accessor :name, :pets, :mood
+ attr_accessor :name, :pets, :mood, :all, :reset_all
+
+  @@all = [] 
 
   def self.all
+    @@all
   end
-  
+
+  def self.reset_all
+    @@all.clear
+  end
+
+  def self.count
+    @@all.count
+  end
   def initialize(type)
   	@type = type
   	@species = "human"	
@@ -14,6 +24,7 @@ class Owner
               :dogs => [],
               :fishes => []
             }
+    @@all << self
   end
 
   def say_species
